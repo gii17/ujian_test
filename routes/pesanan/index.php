@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\Views\{
-    Pesanan\FormC,
+    Customer\Pesanan\FormC,
     Admin\Dashboard\DashboardC,
 };
 use App\Http\Controllers\Services\{PesananCs};
@@ -24,18 +24,18 @@ Route::group([
     'as' => 'pesanan.',
     'middleware' => 'auth'
 ], function () {
-    Route::get('/list',[DashboardC::class, 'pemesanan'])->name('index');
-    Route::get('/acc',[DashboardC::class, 'acc_pesanan'])->name('acc');
-    Route::get('/ticket/detail', [DashboardC::class, 'detail'])->name('ticket.detail');
-    Route::get('/edit/{ticket_number}',[DashboardC::class, 'pesanan_edit'])->name('editPesanan');
-    Route::get('/Laporan/{status?}', [DashboardC::class, 'laporan'])->name('laporan');
+    Route::get('/list',[FormC::class, 'pemesanan'])->name('index');
+    Route::get('/acc',[FormC::class, 'acc_pesanan'])->name('acc');
+    Route::get('/ticket/detail', [FormC::class, 'detail'])->name('ticket.detail');
+    Route::get('/edit/{ticket_number}',[FormC::class, 'pesanan_edit'])->name('editPesanan');
+    Route::get('/Laporan/{status?}', [FormC::class, 'laporan'])->name('laporan');
 });
 
 Route::group([
     'prefix' => 'service'
 ], function () {
-    Route::put('/update/{pesanan}',[PesananCs::class, 'update'])->name('Services.update');
-    Route::delete('/destroy/{pesanan}', [PesananCs::class,'destroy'])->name('Service.destroy');
+    Route::put('/update/{pesanan}',[PesananCs::class, 'update'])->name('Services.update.pesanan');
+    Route::delete('/destroy/{pesanan}', [PesananCs::class,'destroy'])->name('Services.destroy.pesanan');
     Route::put('/Acc/{pesanan:id}',[PesananCs::class, 'acc'])->name('ServicesAcc');
 });
 

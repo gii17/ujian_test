@@ -1,28 +1,36 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+<x-dashboard-layout>
+    <div class="section-header">
+        <h1>Confirmed Tiket Number</h1>
+        <x-section-header basepage="Office" page="Pesanan Ticket" page2="Confirmed" />
+    </div>
+    <div class="row">
+        <div class="col-12">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header justify-content-between d-flex align-items-center">
+                    <h4 class="card-title">Create Konser</h4>
+                </div><!-- end card header -->
                 <div class="card-body">
-                    @if(session('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <form action="{{ route('pesanan.ticket.detail') }}" method="GET">
+                                @csrf
+                                <div class="form-group">
+                                    <div class="mb-3 row">
+                                        <label for="ticket_id" class="form-label" style="margin-top:10px;">Ticket ID:</label>
+                                        <div class="col-md-10">
+                                            <input type="text" name="ticket_id" id="ticket_id" class="form-control"
+                                                placeholder="Masukkan Ticket ID">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary mt-3">Cari</button>
+                                </div>
+                            </form>
                         </div>
-                    @endif
-                <form action="{{ route('ticket.detail') }}" method="GET">
-                    @csrf
-                    <div class="form-group">
-                        <label for="ticket_id">Ticket ID:</label>
-                        <input type="text" name="ticket_id" id="ticket_id" class="form-control" placeholder="Masukkan Ticket ID">
                     </div>
-                    <button type="submit" class="btn btn-primary mt-3">Cari</button>
-                </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
+</x-dashboard-layout>

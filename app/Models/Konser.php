@@ -17,7 +17,7 @@ class Konser extends Model
     protected function total(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $this->artist_name . ' - ' . $this->formatRupiah('price'),
+            get: fn ($value) => $this->name_konser . ' - ' . $this->formatRupiah('price'),
         );
     }
 

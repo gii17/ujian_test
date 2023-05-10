@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Services;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\{Customer,Konser,Pesanan};
+use Illuminate\Console\View\Components\Alert;
+use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
 
 class PesananCs extends Controller
 {
@@ -71,8 +73,8 @@ class PesananCs extends Controller
             'quantity' => $validatedData['quantity'],
             'total_price' => $totalPrice,
         ]);
-
-        return redirect()->route('list-pemesanan');
+        FacadesAlert::success('Updated Successfully', 'Data Berhasil diubah');
+        return redirect()->route('pesanan.index');
 
     }
 
@@ -87,6 +89,6 @@ class PesananCs extends Controller
         $pesanan->status = 'confirmed';
         $pesanan->save();
 
-        return redirect()->route('list-pemesanan')->with('success', 'Pesanan berhasil dikonfirmasi!');
+        return redirect()->route('pesanan.acc')->with('success', 'Pesanan berhasil dikonfirmasi!');
     }
 }
