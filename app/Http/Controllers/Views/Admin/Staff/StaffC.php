@@ -30,7 +30,7 @@ class StaffC extends Controller
             'route' => 'Services.store',
             'button' => 'CREATE',
         ];
-        return view('office.staff.staff_form', $data);
+        return view('office' . $this->viewCreate , $data);
     }
 
     public function update($name)
@@ -42,6 +42,6 @@ class StaffC extends Controller
             'route' => ['Services.update', $staff->id],
             'button' => 'UPDATE',
         ];
-        return view('office.staff.staff_form', $data);
+        return view('office'. $this->viewUpdate, $data);
     }
 }

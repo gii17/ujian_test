@@ -8,10 +8,10 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
                 <div class="card-body">
                     @if(session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
                 <form action="{{ route('ticket.detail') }}" method="GET">
                     @csrf
                     <div class="form-group">

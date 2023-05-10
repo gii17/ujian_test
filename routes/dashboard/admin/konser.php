@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\{
     Views\Admin\Konser\KonserC,
-    Services\PesananCs,
+    Services\Admin\Konser\KonserCs
 };
 
 /*
@@ -25,4 +25,14 @@ Route::group([
 ], function () {
     Route::get('/', [KonserC::class, 'index'])->name('index');
     Route::get('/Create', [KonserC::class, 'create'])->name('create');
+    Route::get('/Update/{konser:name_konser}/{konser_id}', [KonserC::class, 'update'])->name('update');
+    Route::get('/show/{konser:name_konser}', [KonserC::class, 'show'])->name('show');
+});
+
+Route::group([
+    'prefix' => 'Service'
+], function () {
+    Route::post('/store', [KonserCs::class, 'store'])->name('Services.store.konser');
+    Route::put('/update/{konser:id}', [KonserCs::class, 'update'])->name('Services.update.konser');
+    Route::delete('/destory/{konser:id}', [KonserCs::class, 'destroy'])->name('Services.destroy.konser');
 });

@@ -33,6 +33,23 @@
                           'Action'
                       ]
                   ])
+                  <tbody>
+                    @foreach ($konser as $k)
+                    <tr>
+                        <td>{{ $k->name_konser }}</td>
+                        <td>{{ $k->date_konser->format('d-M-Y') }}</td>
+                        <td>{{ $k->time_konser }}</td>
+                        <td>{{ $k->location_konser }}</td>
+                        <td>
+                            <div class="d-flex">
+                                <a href="{!! route('konser.show', $k->name_konser) !!}" class="btn btn-info">Show</a>
+                                <a href="{!! route('konser.update', [$k->name_konser, 'konser_id' => $k->id]) !!}" class="btn btn-primary" style="margin-left: 10px;">Edit</a>
+                                <a href="#" class="btn btn-danger" style="margin-left: 10px;">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                  </tbody>
               </x-core-table>
             </div>
           </div>

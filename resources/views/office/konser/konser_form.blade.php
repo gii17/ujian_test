@@ -18,7 +18,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-xl-12">
-                            {{-- {!! Form::model($model, ['route' => $route, 'method' => $method, 'files' => true]) !!} --}}
+                            {!! Form::model($model, ['route' => $route, 'method' => $method, 'files' => true]) !!}
                             <div class="mb-3 row">
                                 {!! Form::label('name_konser', 'Name Konser', ['class' => 'col-md-2 col-form-label']) !!}
                                 <div class="col-md-10">
@@ -34,27 +34,27 @@
                             </div>
 
                             <div class="mb-3 row">
-                                {!! Form::label('date', 'Date', ['class' => 'col-md-2 col-form-label']) !!}
+                                {!! Form::label('date_konser', 'Date', ['class' => 'col-md-2 col-form-label']) !!}
                                 <div class="col-md-10">
-                                    {!! Form::date('date', null, [
+                                    {!! Form::date('date_konser', $model->date_konser, [
                                         'class' => 'form-control',
                                         'placeholder' => 'Choose Date'
                                     ]) !!}
-                                    @if($errors->has('date'))
-                                        <span class="text-danger">{{ $errors->first('date') }}</span>
+                                    @if($errors->has('date_konser'))
+                                        <span class="text-danger">{{ $errors->first('date_konser') }}</span>
                                     @endif
                                 </div>
                             </div>
 
                             <div class="mb-3 row">
-                                {!! Form::label('time', 'Time', ['class' => 'col-md-2 col-form-label']) !!}
+                                {!! Form::label('time_konser', 'Time', ['class' => 'col-md-2 col-form-label']) !!}
                                 <div class="col-md-10">
-                                    {!! Form::time('time', null, [
+                                    {!! Form::time('time_konser', null, [
                                         'class' => 'form-control',
                                         'placeholder' => 'Choose time'
                                     ]) !!}
-                                    @if($errors->has('time'))
-                                        <span class="text-danger">{{ $errors->first('time') }}</span>
+                                    @if($errors->has('time_konser'))
+                                        <span class="text-danger">{{ $errors->first('time_konser') }}</span>
                                     @endif
                                 </div>
                             </div>
@@ -73,24 +73,39 @@
                             </div>
 
                             <div class="mb-3 row">
-                                {!! Form::label('ticket_price', 'Ticket Price', ['class' => 'col-md-2 col-form-label']) !!}
+                                {!! Form::label('name_artist', 'Name Artist / Guest', ['class' => 'col-md-2 col-form-label']) !!}
                                 <div class="col-md-10">
-                                    {!! Form::number('ticket_price', null, [
-                                        'class' => 'form-control',
-                                        'placeholder' => 'Enter Ticket Price',
-                                        'min' => '0'
-                                    ]) !!}
-                                    @if($errors->has('ticket_price'))
-                                        <span class="text-danger">{{ $errors->first('ticket_price') }}</span>
+                                    @foreach($artis as $a)
+                                        {!! Form::hidden('name_artist[]', $a, ['data-role' => 'tagsinput']) !!}
+                                    @endforeach
+                                    {!! Form::text('name_artist[]', null, ['data-role' => 'tagsinput', 'placholder' => 'Masukan Nama Guest Start', 'class' => 'form-control', 'autocomplate' => 'off']) !!}
+                                    @if($errors->has('name_artist'))
+                                        <span class="text-danger">{{ $errors->first('name_artist') }}</span>
                                     @endif
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label>Tags</label>
-                                <input type="text" class="form-control inputtags">
-                              </div>
+
+                            <div class="mb-3 row">
+                                {!! Form::label('price', 'Price', ['class' => 'col-md-2 col-form-label']) !!}
+                                <div class="col-md-10">
+                                    {!! Form::text('price', null, ['placholder' => 'Masukan Price', 'class' => 'form-control nominal', 'autocomplate' => 'off']) !!}
+                                    @if($errors->has('price'))
+                                        <span class="text-danger">{{ $errors->first('price') }}</span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                {!! Form::label('ticket_available', 'Ticke Availabel', ['class' => 'col-md-2 col-form-label']) !!}
+                                <div class="col-md-10">
+                                    {!! Form::number('ticket_available', null, ['placholder' => 'Masukan ticket_available', 'class' => 'form-control', 'autocomplate' => 'off']) !!}
+                                    @if($errors->has('ticket_available'))
+                                        <span class="text-danger">{{ $errors->first('ticket_available') }}</span>
+                                    @endif
+                                </div>
+                            </div>
                             <div class="mt-4 text-center">
-                                {{-- {!! Form::submit($button, ['class' => 'btn btn-primary w-md']) !!} --}}
+                                {!! Form::submit($button, ['class' => 'btn btn-primary w-md']) !!}
                             </div>
                             {{-- {!! Form::close() !!} --}}
                         </div>
@@ -100,20 +115,10 @@
         </div>
     </div>
     @push('script')
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/js/standalone/selectize.min.js"></script>
+    <script src="{{ asset('assets_dashboard/js/jquery.mask.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#tags-input').selectize({
-                delimiter: ',',
-                persist: false,
-                create: function(input) {
-                    return {
-                        value: input,
-                        text: input
-                    };
-                }
-            });
+            $('.nominal').mask("#.##0", {reverse: true});
         });
     </script>
     @endpush
