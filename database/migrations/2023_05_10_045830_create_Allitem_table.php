@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('konsers', function (Blueprint $table) {
             $table->id();
-            $table->string('artist_name');
-            $table->dateTime('date_time');
-            $table->text('venue');
+            $table->string('name_konser');
+            $table->date('date_konser');
+            $table->time('time_konser');
+            $table->string('location_konser');
             $table->integer('price');
             $table->integer('ticket_available');
             $table->timestamps();

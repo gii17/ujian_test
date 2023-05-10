@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
-use App\Http\Controllers\{FormC};
+use App\Http\Controllers\Views\Pesanan\{FormC};
 use App\Http\Controllers\Services\{PesananCs};
 
 /*

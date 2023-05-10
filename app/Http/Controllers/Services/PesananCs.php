@@ -38,7 +38,7 @@ class PesananCs extends Controller
             'quantity' => $validatedData['quantity'],
             'total_price' => $totalPrice,
             'ticket_number' => $randomNumber,
-            'status' => 'Not Confirmed'
+            'status' => 'unconfirmed'
         ]);
 
         return redirect()->route('ticket', $randomNumber);

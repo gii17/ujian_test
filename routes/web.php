@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{HomeC,FormC};
+use App\Http\Controllers\Views\Customer\{Home\HomeC,Pesanan\FormC};
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +23,8 @@ Route::group(['prefix' => 'Pesanan'], __DIR__.'/pesanan/index.php');
 Route::get('/form', [FormC::class, 'index'])->name('form');
 
 Route::group(['prefix' => 'Office'], function () {
-    Route::group(['prefix' => 'Auth'], function () {
-        Auth::routes();
-    });
-    Route::group(['prefix' => 'Dashboard'], __DIR__.'/dashboard/index.php');
+    Route::group(['prefix' => 'Auth'], function () {Auth::routes();});
+    Route::group(['prefix' => 'Dashboard'], __DIR__.'/dashboard/admin/index.php');
+    Route::group(['prefix' => 'Konser'], __DIR__.'/dashboard/admin/konser.php');
+    Route::group(['prefix' => 'Staff'], __DIR__.'/dashboard/admin/staff.php');
 });
