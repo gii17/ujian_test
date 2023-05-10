@@ -75,9 +75,11 @@
                             <div class="mb-3 row">
                                 {!! Form::label('name_artist', 'Name Artist / Guest', ['class' => 'col-md-2 col-form-label']) !!}
                                 <div class="col-md-10">
-                                    @foreach($artis as $a)
-                                        {!! Form::hidden('name_artist[]', $a, ['data-role' => 'tagsinput']) !!}
-                                    @endforeach
+                                    @if(!is_null($artis))
+                                        @foreach($artis as $a)
+                                            {!! Form::hidden('name_artist[]', $a, ['data-role' => 'tagsinput']) !!}
+                                        @endforeach
+                                    @endif
                                     {!! Form::text('name_artist[]', null, ['data-role' => 'tagsinput', 'placholder' => 'Masukan Nama Guest Start', 'class' => 'form-control', 'autocomplate' => 'off']) !!}
                                     @if($errors->has('name_artist'))
                                         <span class="text-danger">{{ $errors->first('name_artist') }}</span>

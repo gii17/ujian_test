@@ -10,17 +10,21 @@
             <li class="menu-header">Dashboard</li>
             <li class=" {{ Request::is('Office/Dashboard') ? "active" : '' }}"><a class="nav-link"
                     href="{{ route('home') }}"><i class="bi bi-grid-1x2"></i> <span>Dashboard</span></a></li>
+            @role('Admin')
             <li class="menu-header">Konser</li>
             <li class=" {{ Request::is('Office/Konser/List*') ? "active" : '' }}"><a class="nav-link"
                     href="{{ route('konser.index') }}"><i class="bi bi-grid-1x2"></i> <span>Konser</span></a></li>
             <li class="menu-header">Staff</li>
             <li class=" {{ Request::is('Office/Staff/List*') ? "active" : '' }}"><a class="nav-link"
                     href="{{ route('staf.index') }}"><i class="bi bi-grid-1x2"></i> <span>Staff</span></a></li>
+            @endrole
             <li class="menu-header">Pesanan</li>
-            <li class=" {{ Request::is('Office/Pesanan-Ticket/List*') ? "active" : '' }}"><a class="nav-link"
+            <li class=" {{ Request::is('Pesanan/Pesanan/list*') ? "active" : '' }}"><a class="nav-link"
                     href="{{ route('pesanan.index') }}"><i class="bi bi-grid-1x2"></i> <span>List Pesanan Ticket</span></a></li>
             <li class=" {{ Request::is('Office/Pesanan-Ticket/List*') ? "active" : '' }}"><a class="nav-link"
                     href="{{ route('pesanan.acc') }}"><i class="bi bi-grid-1x2"></i> <span>Confirmed Ticket</span></a></li>
+            <li class=" {{ Request::is('Pesanan/Pesanan/laporan*') ? "active" : '' }}"><a class="nav-link"
+                    href="{{ route('pesanan.laporan') }}"><i class="bi bi-grid-1x2"></i> <span>Laporan</span></a></li>
         </ul>
 
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

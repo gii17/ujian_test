@@ -84,6 +84,30 @@ class PesananCs extends Controller
         return redirect()->back();
     }
 
+    public function pesanan_restore($id = null)
+    {
+        if($id != null) :
+            $pesanan = Pesanan::onlyTrashed()
+                ->where('id', $id)
+                ->restore();
+        else :
+            $pesanan = Pesanan::withTrashed()->restore();
+        endif;
+        return redirect()->route('pesanan.pesanan-trash');
+    }
+
+    public function siswa_forceDelete($id = null)
+    {
+        if($id != null) :
+            $pesanan = Pesanan::onlyTrashed()
+                ->where('id', $id)
+                ->forceDelete();
+        else :
+            $pesanan = Pesanan::onlyTrashed()->forceDelete();
+        endif;
+        return redirect()->route('pesanan.pesanan-trash');
+    }
+
     public function acc(Request $request, Pesanan $pesanan)
     {
         $pesanan->status = 'confirmed';

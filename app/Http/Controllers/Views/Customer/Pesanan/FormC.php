@@ -68,4 +68,23 @@ class FormC extends Controller
 
         return view('office.pesanan.detail', compact('pesanan'));
     }
+
+    public function pesanan_trash()
+    {
+        $pesanan = Pesanan::onlyTrashed()->get();
+
+        return view('office.pesanan.trash', [
+            'pesanan' => $pesanan
+        ]);
+    }
+
+    public function laporan()
+    {
+        $data = [
+            'confirmed' => Pesanan::where('status', 'confirmed')->get(),
+            'unconfirmed' => Pesanan::where('status', 'unconfirmed')->get()
+        ];
+
+        return view('office.pesanan.laporan', $data);
+    }
 }

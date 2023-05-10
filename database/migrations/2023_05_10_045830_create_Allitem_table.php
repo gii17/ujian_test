@@ -39,6 +39,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->integer('total_price');
             $table->string('status');
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
 
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');

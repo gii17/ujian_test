@@ -29,7 +29,11 @@ class KonserC extends Controller
             'method' => 'POST',
             'route' => 'Services.store.konser',
             'button' => 'CREATE',
+            'artis' => null
         ];
+        if (!empty($existing_artists)) {
+            $data['artis'] = $existing_artists;
+        }
         return view('office' . $this->viewCreate, $data);
     }
 
@@ -42,7 +46,7 @@ class KonserC extends Controller
             'method' => 'PUT',
             'route' => ['Services.update.konser', $konser->id],
             'button' => 'UPDATE',
-            'artis' => $existing_artists
+            'artis' => $existing_artists ?? NULL
         ];
         return view('office' . $this->viewUpdate ,$data);
     }

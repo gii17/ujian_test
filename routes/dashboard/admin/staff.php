@@ -21,7 +21,7 @@ use App\Http\Controllers\{
 Route::group([
     'prefix' => 'List',
     'as' => 'staf.',
-    'middleware' => 'auth'
+    'middleware' => ['auth', 'role:Admin']
 ], function () {
     Route::get('/', [StaffC::class, 'index'])->name('index');
     Route::get('/Create', [StaffC::class, 'create'])->name('create');

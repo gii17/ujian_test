@@ -29,6 +29,10 @@ Route::group([
     Route::get('/ticket/detail', [FormC::class, 'detail'])->name('ticket.detail');
     Route::get('/edit/{ticket_number}',[FormC::class, 'pesanan_edit'])->name('editPesanan');
     Route::get('/Laporan/{status?}', [FormC::class, 'laporan'])->name('laporan');
+    Route::get('/trash', [FormC::class, 'pesanan_trash'])
+            ->name('pesanan-trash');
+    Route::get('/laporan', [FormC::class, 'laporan'])
+            ->name('laporan');
 });
 
 Route::group([
@@ -37,6 +41,10 @@ Route::group([
     Route::put('/update/{pesanan}',[PesananCs::class, 'update'])->name('Services.update.pesanan');
     Route::delete('/destroy/{pesanan}', [PesananCs::class,'destroy'])->name('Services.destroy.pesanan');
     Route::put('/Acc/{pesanan:id}',[PesananCs::class, 'acc'])->name('ServicesAcc');
+    Route::post('/restore/{pesanan:id?}', [PesananCs::class, 'pesanan_restore'])
+        ->name('pesanan-restore');
+    Route::delete('/pesanan-forceDelete/{pesanan:id?}', [PesananCs::class, 'pesanan_forceDelete'])
+        ->name('pesanan-forceDelete');
 });
 
 

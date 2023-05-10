@@ -7,6 +7,9 @@
         </style>
         <div class="section-header">
             <h1>List Pemesanan</h1>
+            <div class="section-header-button">
+                <a href="{!! route('pesanan.pesanan-trash') !!}" class="btn btn-danger btn-icon"> <i class="bi bi-trash"></i> Trash Data  </a>
+            </div>
             <x-section-header basepage="Office" page="Pesanan Ticket" page2="List" />
         </div>
     <div class="container">
@@ -58,7 +61,7 @@
               var name = $(this).data("name");
               event.preventDefault();
               Swal.fire({
-                  title: 'Kamu yakin ingin menghapus ticket ini?',
+                  title: 'Kamu yakin ingin menghapus ticket  ini?',
                   text: " klik oke untuk menlajutkan",
                   icon: 'question',
                   showCancelButton: true,

@@ -72,5 +72,7 @@ class KonserCs extends Controller
             }
         }
         $konser->save();
+        Alert::success('Updated Succesfully', 'Konser Berhasil dibuat');
+        return redirect()->route('konser.index');
     }
 }
