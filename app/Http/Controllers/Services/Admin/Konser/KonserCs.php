@@ -56,7 +56,6 @@ class KonserCs extends Controller
 
         $konser = Konser::findOrFail($konser_id);
 
-        $konser->guest()->delete();
         $konser->name_konser = $request->name_konser;
         $konser->price = (int) str_replace('.', '', $request->price);
         $konser->date_konser = $request->date_konser;
@@ -65,8 +64,9 @@ class KonserCs extends Controller
         $konser->ticket_available = $request->ticket_available;
         $konser->save();
 
+        $konser->guest()->delete();
         if ($request->has('name_artist')) {
-            foreach($request->name_artist as $artist_name) {
+            foreach(explode(',', implode($request->name_artist)) as $artist_name) {
                 $artist = new guestStart(['name_artist' => $artist_name]);
                 $konser->guest()->save($artist);
             }
