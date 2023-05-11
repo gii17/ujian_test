@@ -35,3 +35,22 @@
         <2>Laravel Collective
         <3>Ui
         <4>Realrashid/Alert
+
+## Cara Masuk ke halaman admin 
+    <1>Seeder terlebih dahulu Php Artisa Seed
+    <2>Lalu ketik di Url Seperti ini Office/Auth/login Karena Menurut saya
+        Halaman Login sengaja tidak di tampilkan karena hanya Admin dan Staf saja
+        yang boleh mengetahui Url Laman lOGIN
+    <3> Akun Admin = gmail = admin@admin.com
+                     password = "admin123"
+    <4> Akses Admin = Create Konser
+                      Edit Konser
+                      Delete Konser
+                      Acc Ticket / Ticket 
+                      List Pemesana
+                      CRUD Staff
+                      Laporan
+        Akses Staff =  Acc Ticket
+                        List Pemesanan
+                        Laporan
+        Akses Guest / Cusstomer = Pesan Ticket
