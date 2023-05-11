@@ -37,7 +37,7 @@
         <4>Realrashid/Alert
 
 ## Cara Masuk ke halaman admin 
-    <1>Seeder terlebih dahulu Php Artisa Seed
+    <1>Seeder terlebih dahulu php Artisan --seed
     <2>Lalu ketik di Url Seperti ini Office/Auth/login Karena Menurut saya
         Halaman Login sengaja tidak di tampilkan karena hanya Admin dan Staf saja
         yang boleh mengetahui Url Laman lOGIN
