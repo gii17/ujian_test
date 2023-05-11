@@ -12,9 +12,9 @@
       </div>
       <h1>TICKET KONSER</h1>
       <div id="project">
-        <div><span class="mt-3">Artis Name</span> : {{ $ticket->konser->artist_name }}</div>
+        <div><span class="mt-3">Konser Name</span> : {{ $ticket->konser->name_konser }}</div>
         <div><span class="mt-3">Date Time</span>: {{ date('d-M-Y H:i:s', strtotime($ticket->konser->date_time)) }}</div>
-        <div><span class="mt-3">Venue</span>: {{ $ticket->konser->venue }}</div>
+        <div><span class="mt-3">Venue</span>: {{ $ticket->konser->location_konser }}</div>
         <div><span class="mt-3">Ticket Number</span>: {{ $ticket->ticket_number }}</div>
         <div><span class="mt-3">Status Ticket</span>: {{ $ticket->status }}</div>
       </div>
@@ -26,7 +26,7 @@
         <tbody>
             <tr>
                 <td class="service">{{ $ticket->ticket_number }}</td>
-                <td class="desc">{{ $ticket->konser->artist_name }}</td>
+                <td class="desc">{{ $ticket->konser->name_konser }}</td>
                 <td class="unit">{{ $ticket->konser->formatRupiah('price') }}</td>
                 <td class="qty">{{ $ticket->quantity }}</td>
                 <td class="total">{{ $ticket->status }}</td>
