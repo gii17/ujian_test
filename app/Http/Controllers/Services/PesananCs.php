@@ -13,11 +13,11 @@ class PesananCs extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => ['required'],
-            'email' => ['required'],
-            'phone' => ['required'],
-            'quantity' => ['required'],
-            'address' => ['required'],
+            'name'      => ['required'],
+            'email'     => ['required'],
+            'phone'     => ['required'],
+            'quantity'  => ['required'],
+            'address'   => ['required'],
             'konser_id' => ['required'],
         ]);
 
@@ -27,20 +27,20 @@ class PesananCs extends Controller
         $totalPrice = $validatedData['quantity'] * $konser->price;
 
         $customer = Customer::create([
-            'name' => $validatedData['name'],
-            'email' => $validatedData['email'],
-            'phone' => $validatedData['phone'],
+            'name'    => $validatedData['name'],
+            'email'   => $validatedData['email'],
+            'phone'   => $validatedData['phone'],
             'address' => $validatedData['address'],
         ]);
 
         $randomNumber = mt_rand(10000000, 99999999);
         $pesanan = Pesanan::create([
-            'customer_id' => $customer->id,
-            'konser_id' => $konser->id,
-            'quantity' => $validatedData['quantity'],
-            'total_price' => $totalPrice,
+            'customer_id'   => $customer->id,
+            'konser_id'     => $konser->id,
+            'quantity'      => $validatedData['quantity'],
+            'total_price'   => $totalPrice,
             'ticket_number' => $randomNumber,
-            'status' => 'unconfirmed'
+            'status'        => 'unconfirmed'
         ]);
 
         return redirect()->route('ticket', $randomNumber);
@@ -49,11 +49,11 @@ class PesananCs extends Controller
     public function update(Request $request, Pesanan $pesanan)
     {
         $validatedData = $request->validate([
-            'name' => ['required'],
-            'email' => ['required'],
-            'phone' => ['required'],
+            'name'     => ['required'],
+            'email'    => ['required'],
+            'phone'    => ['required'],
             'quantity' => ['required'],
-            'address' => ['required'],
+            'address'  => ['required'],
         ]);
 
         $konser = $pesanan->konser;
@@ -63,14 +63,14 @@ class PesananCs extends Controller
         $totalPrice = $validatedData['quantity'];
 
         $pesanan->customer->update([
-            'name' => $validatedData['name'],
-            'email' => $validatedData['email'],
-            'phone' => $validatedData['phone'],
+            'name'    => $validatedData['name'],
+            'email'   => $validatedData['email'],
+            'phone'   => $validatedData['phone'],
             'address' => $validatedData['address'],
         ]);
 
         $pesanan->update([
-            'quantity' => $validatedData['quantity'],
+            'quantity'    => $validatedData['quantity'],
             'total_price' => $totalPrice,
         ]);
         FacadesAlert::success('Updated Successfully', 'Data Berhasil diubah');

@@ -8,7 +8,7 @@ use App\Models\{Konser as Model, guestStart};
 
 class KonserC extends Controller
 {
-    private $ViewIndex = '.konser.index';
+    private $ViewIndex  = '.konser.index';
     private $viewCreate = '.konser.konser_form';
     private $viewUpdate = '.konser.konser_form';
     private $viewDetail = '.konser.detail';
@@ -16,7 +16,7 @@ class KonserC extends Controller
     public function index()
     {
         $data = [
-            'konser' => Model::all()
+            'konser' => Model::latest()->get()
         ];
         return view('office' . $this->ViewIndex, $data);
     }
@@ -25,11 +25,11 @@ class KonserC extends Controller
     {
         $konser = new Model();
         $data = [
-            'model' => $konser,
+            'model'  => $konser,
             'method' => 'POST',
-            'route' => 'Services.store.konser',
+            'route'  => 'Services.store.konser',
             'button' => 'CREATE',
-            'artis' => null
+            'artis'  => null
         ];
         if (!empty($existing_artists)) {
             $data['artis'] = $existing_artists;
@@ -42,11 +42,11 @@ class KonserC extends Controller
         $konser = Model::where('name_konser', $name_konser)->firstOrFail();
         $existing_artists = guestStart::where('konser_id', $konser_id)->pluck('name_artist')->toArray();
         $data = [
-            'model' => $konser,
+            'model'  => $konser,
             'method' => 'PUT',
-            'route' => ['Services.update.konser', $konser->id],
+            'route'  => ['Services.update.konser', $konser->id],
             'button' => 'UPDATE',
-            'artis' => $existing_artists ?? NULL
+            'artis'  => $existing_artists ?? NULL
         ];
         return view('office' . $this->viewUpdate ,$data);
     }

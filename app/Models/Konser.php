@@ -12,7 +12,10 @@ class Konser extends Model
 {
     use HasFactory,HasFormatRupiah;
 
+    CONST TABLE = 'konsers';
+
     protected $guarded = ['id'];
+    protected $table   = self::TABLE;
 
     protected function total(): Attribute
     {

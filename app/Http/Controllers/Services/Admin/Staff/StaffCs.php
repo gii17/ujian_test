@@ -13,10 +13,10 @@ class StaffCs extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
-            'email' => 'required|max:255',
-            'phone' => 'required|max:13',
-            'address' => 'required',
+            'name'     => 'required|max:255',
+            'email'    => 'required|max:255',
+            'phone'    => 'required|max:13',
+            'address'  => 'required',
             'password' => 'required|min:8',
          ]);
 
@@ -31,16 +31,16 @@ class StaffCs extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|max:255',
-            'phone' => 'required|max:13',
+            'name'    => 'required|max:255',
+            'email'   => 'required|max:255',
+            'phone'   => 'required|max:13',
             'address' => 'required',
         ]);
 
         $user = User::findOrFail($id);
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->phone = $request->input('phone');
+        $user->name    = $request->input('name');
+        $user->email   = $request->input('email');
+        $user->phone   = $request->input('phone');
         $user->address = $request->input('address');
 
         if(empty($request->input('password'))) {

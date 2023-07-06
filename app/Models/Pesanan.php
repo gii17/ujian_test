@@ -11,8 +11,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Pesanan extends Model
 {
     use HasFactory,HasFormatRupiah,SoftDeletes;
+    CONST TABLE = "pesanans";
+
     public $timestamps = true;
     protected $guarded = ['id'];
+    protected $table   = self::TABLE;
 
     public function konser(){return $this->belongsTo(Konser::class);}
     public function customer(){return $this->belongsTo(Customer::class);}

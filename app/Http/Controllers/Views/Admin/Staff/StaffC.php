@@ -8,7 +8,7 @@ use App\Models\User as Model;
 
 class StaffC extends Controller
 {
-    private $ViewIndex = '.staff.index';
+    private $ViewIndex  = '.staff.index';
     private $viewCreate = '.staff.staff_form';
     private $viewUpdate = '.staff.staff_form';
     private $viewDetail = '.staff.detail';
@@ -25,9 +25,9 @@ class StaffC extends Controller
     {
         $staff = new Model();
         $data = [
-            'model' => $staff,
+            'model'  => $staff,
             'method' => 'POST',
-            'route' => 'Services.store',
+            'route'  => 'Services.store',
             'button' => 'CREATE',
         ];
         return view('office' . $this->viewCreate , $data);
@@ -37,9 +37,9 @@ class StaffC extends Controller
     {
         $staff = Model::where('name', $name)->firstOrFail();
         $data = [
-            'model' => $staff,
+            'model'  => $staff,
             'method' => 'PUT',
-            'route' => ['Services.update', $staff->id],
+            'route'  => ['Services.update', $staff->id],
             'button' => 'UPDATE',
         ];
         return view('office'. $this->viewUpdate, $data);
