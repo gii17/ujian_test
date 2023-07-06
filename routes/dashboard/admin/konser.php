@@ -21,7 +21,7 @@ use App\Http\Controllers\{
 Route::group([
     'prefix' => 'List',
     'as' => 'konser.',
-    'middleware' => 'auth'
+    'middleware' => ['auth', 'role:Admin']
 ], function () {
     Route::get('/', [KonserC::class, 'index'])->name('index');
     Route::get('/Create', [KonserC::class, 'create'])->name('create');

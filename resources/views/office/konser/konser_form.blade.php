@@ -77,7 +77,11 @@
                                 <div class="col-md-10">
                                     @if(!is_null($artis))
                                         @foreach($artis as $a)
-                                            {!! Form::hidden('name_artist[]', $a, ['data-role' => 'tagsinput']) !!}
+                                        <div class="input-group mb-2">
+                                            <input type="text" name="name_artist[]" class="form-control" value="{{ $a }}" readonly>
+                                            <button type="button" class="btn btn-danger remove-btn" data-name="{{ $a }}"><i class="fa fa-times"></i></button>
+                                            <input type="hidden" name="delete_artis[]" value="{{ $a }}">
+                                        </div>
                                         @endforeach
                                     @endif
                                     {!! Form::text('name_artist[]', null, ['data-role' => 'tagsinput', 'placholder' => 'Masukan Nama Guest Start', 'class' => 'form-control', 'autocomplate' => 'off']) !!}
@@ -119,9 +123,27 @@
     @push('script')
     <script src="{{ asset('assets_dashboard/js/jquery.mask.min.js') }}"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('.nominal').mask("#.##0", {reverse: true});
+        $('.remove-btn').click(function() {
+            var name = $(this).data('name');
+            $(this).closest('.input-group').remove();
+            $('<input>').attr({
+                type: 'hidden',
+                name: 'delete_artis[]',
+                value: name
+            }).appendTo('form');
         });
+
+        // Tambahkan event listener untuk input baru
+        $('input[name="name_artist[]"]').keyup(function() {
+            var value = $(this).val();
+            var $btn = $(this).closest('.input-group').find('.remove-btn');
+            if (value.length > 0) {
+                $btn.show();
+            } else {
+                $btn.hide();
+            }
+        });
+        $('.nominal').mask("#.##0", {reverse: true});
     </script>
     @endpush
 </x-dashboard-layout>

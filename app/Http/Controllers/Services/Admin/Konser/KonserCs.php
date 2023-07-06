@@ -64,14 +64,25 @@ class KonserCs extends Controller
         $konser->ticket_available = $request->ticket_available;
         $konser->save();
 
-        $konser->guest()->delete();
-        if ($request->has('name_artist')) {
-            foreach(explode(',', implode($request->name_artist)) as $artist_name) {
-                $artist = new guestStart(['name_artist' => $artist_name]);
-                $konser->guest()->save($artist);
-            }
+        $guests_from_form = explode(',',  implode($request->name_artist)) ?? [];
+    $guests_from_db = $konser->guest()->pluck('name_artist')->toArray();
+
+    // Delete guests that are not in the form
+    $guests_to_delete = array_diff($guests_from_db, $guests_from_form);
+    if (!empty($guests_to_delete)) {
+        guestStart::whereIn('name_artist', $guests_to_delete)->delete();
+    }
+
+    // Add new guests or update existing ones
+    if (!empty($guests_from_form)) {
+        foreach ($guests_from_form as $artist_name) {
+            $artist = guestStart::updateOrCreate(
+                ['name_artist' => $artist_name],
+                ['konser_id' => $konser->id]
+            );
+            $konser->guest()->save($artist);
         }
-        $konser->save();
+    }
         Alert::success('Updated Succesfully', 'Konser Berhasil dibuat');
         return redirect()->route('konser.index');
     }
